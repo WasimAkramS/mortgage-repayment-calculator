@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  <link rel="stylesheet" href="style.css">
+  <title>Frontend Mentor | Mortgage repayment calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 11px; text-align: center; }
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+
+<body>
+<main>
+  <div class="card">
+  <div class="input-section">
+  <header>
+    <h1>Mortgage Calculator</h1>
+  <p>Clear All</p>
+  </header>
+
+  <label for="mortage-amount">Mortgage Amount</label>
+  <input type="number" id="mortage-amount" name="mortage-amount">
+
+  <label for="mortage-term">Mortgage Term</label>
+  <input type="number" id="mortage-term" name="mortage-term">
+
+  <label for="interest-rate">Interest Rate</label>
+  <input type="number" id="interest-rate" name="interest-rate">
+
+  <label>Mortage Type</label>
+  <input type="radio" id="repayment" value="repayment" name="mortage-type">
+  <label for="repayment">Repayment</label>
+  <input type="radio" id="interest-only" value="interest-only" name="mortage-type">
+  <label for="interest-only">Interest Only</label>
+
+  <button id="calculate-btn">Calculate Repayments</button>
+  </div>
+
+  <!-- Empty results start -->
+<div class="result-section-1">
+  <h2>Results shown here</h2>
+
+  <p>Complete the form and click “calculate repayments” to see what 
+  your monthly repayments would be.</p>
+
+  <!-- Empty results end -->
+</div>
+  <!-- Completed results start -->
+
+
+  <div class="result-section-2">
+  <h2>Your results</h2>
+
+  <p>Your results are shown below based on the information you provided. 
+  To adjust the results, edit the form and click “calculate repayments” again.</p>
+
+  <div class="repayment-container">
+  <h3>Your monthly repayments</h3>
+  <p class="monthly-amt"></p>
+  <h3>Total you'll repay over the term</h3>
+  <p class="total-amt"></p>
+  </div>
+
+  <!-- Completed results end -->
+</div>
+</div>
+   </main>
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+</body>
+</html>
