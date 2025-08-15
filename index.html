@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
 
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./src/output.css">
   <title>Frontend Mentor | Mortgage repayment calculator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,35 +17,37 @@
   </style>
 </head>
 
-<body>
-<main>
-  <div class="card">
-  <div class="input-section">
-  <header>
-    <h1>Mortgage Calculator</h1>
-  <p>Clear All</p>
+<body >
+<div class="container flex justify-center items-center min-h-screen bg-blue-100">
+  <div class="card flex flex-row w-200 border-1">
+  <div class="input-section w-120" m-9>
+  <header class="flex flex-row items-center justify-between">
+    <h1 class="text-slate-900 text-lg">Mortgage Calculator</h1>
+  <p class="text-slate-400">Clear All</p>
   </header>
 
-  <label for="mortage-amount">Mortgage Amount</label>
+  <main class="flex flex-col">
+  <label for="mortage-amount" class="text-slate-400">Mortgage Amount</label>
   <input type="number" id="mortage-amount" name="mortage-amount">
 
-  <label for="mortage-term">Mortgage Term</label>
+  <label for="mortage-term" class="text-slate-400">Mortgage Term</label>
   <input type="number" id="mortage-term" name="mortage-term">
 
-  <label for="interest-rate">Interest Rate</label>
+  <label for="interest-rate" class="text-slate-400">Interest Rate</label>
   <input type="number" id="interest-rate" name="interest-rate">
 
-  <label>Mortage Type</label>
+  <label class="text-slate-300">Mortage Type</label>
   <input type="radio" id="repayment" value="repayment" name="mortage-type">
-  <label for="repayment">Repayment</label>
+  <label for="repayment" class="text-slate-900">Repayment</label>
   <input type="radio" id="interest-only" value="interest-only" name="mortage-type">
-  <label for="interest-only">Interest Only</label>
+  <label for="interest-only" class="text-slate-900">Interest Only</label>
 
   <button id="calculate-btn">Calculate Repayments</button>
   </div>
-
+</main>
   <!-- Empty results start -->
-<div class="result-section-1">
+<div class="result-section-1 w-100 bg-slate-800 px-5">
+  <img src="assets/images/illustration-empty.svg">
   <h2>Results shown here</h2>
 
   <p>Complete the form and click “calculate repayments” to see what 
@@ -56,7 +58,7 @@
   <!-- Completed results start -->
 
 
-  <div class="result-section-2">
+  <div class="result-section-2 hidden bg-slate-800">
   <h2>Your results</h2>
 
   <p>Your results are shown below based on the information you provided. 
@@ -72,7 +74,7 @@
   <!-- Completed results end -->
 </div>
 </div>
-   </main>
+</div>
   
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
