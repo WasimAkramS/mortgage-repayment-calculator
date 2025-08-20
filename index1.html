@@ -2,82 +2,209 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="./src/output.css">
-  <title>Frontend Mentor | Mortgage repayment calculator</title>
+  <title>Mortgage Calculator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
-  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  
   <style>
-    .attribution { font-size: 11px; text-align: center; }
-    .attribution a { color: hsl(228, 45%, 44%); }
+    :root {
+      --color-lime: hsl(61, 70%, 52%);
+      --color-red: hsl(4, 69%, 50%);
+      --color-slate-100: hsl(202, 86%, 94%);
+      --color-slate-300: hsl(203, 41%, 72%);
+      --color-slate-500: hsl(200, 26%, 54%);
+      --color-slate-700: hsl(200, 24%, 40%);
+      --color-slate-900: hsl(202, 55%, 16%);
+    }
+    
+    .bg-lime { background-color: var(--color-lime); }
+    .bg-slate-100 { background-color: var(--color-slate-100); }
+    .bg-slate-700 { background-color: var(--color-slate-700); }
+    .bg-slate-900 { background-color: var(--color-slate-900); }
+    .text-lime { color: var(--color-lime); }
+    .text-slate-300 { color: var(--color-slate-300); }
+    .text-slate-500 { color: var(--color-slate-500); }
+    .text-slate-700 { color: var(--color-slate-700); }
+    .text-slate-900 { color: var(--color-slate-900); }
+    .border-lime { border-color: var(--color-lime); }
+    .border-slate-300 { border-color: var(--color-slate-300); }
+    .border-slate-500 { border-color: var(--color-slate-500); }
+    .ring-lime { --tw-ring-color: var(--color-lime); }
+    .hover\:border-lime:hover { border-color: var(--color-lime); }
+    .hover\:border-slate-900:hover { border-color: var(--color-slate-900); }
+    .hover\:text-slate-700:hover { color: var(--color-slate-700); }
+    .focus\:ring-lime:focus { --tw-ring-color: var(--color-lime); }
+    .focus\:border-lime:focus { border-color: var(--color-lime); }
+    
+    .attribution { 
+      font-size: 11px; 
+      text-align: center; 
+      margin-top: 2rem;
+      color: var(--color-slate-500);
+    }
+    .attribution a { 
+      color: hsl(228, 45%, 44%); 
+      text-decoration: none;
+    }
+    .attribution a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 
-<body>
-<div class="container">
-  <div class="card">
-  <div class="input-section">
-  <header>
-    <h1>Mortgage Calculator</h1>
-  <p>Clear All</p>
-  </header>
+<body class="font-sans bg-slate-100 min-h-screen flex flex-col justify-center items-center p-4">
+  <div class="container flex justify-center items-center">
+    <div class="card flex relative bg-white rounded-3xl shadow-2xl overflow-hidden max-w-4xl w-full h-[60vh]">
+      <!-- Left Section (Input Section) -->
+      <div class="input-section w-1/2 p-6 bg-white">
+        <header class="flex items-center justify-between mb-6">
+          <h1 class="text-slate-900 text-xl font-bold">Calculator</h1>
+          <button class="text-slate-500 text-sm hover:text-slate-700 underline cursor-pointer">Clear All</button>
+        </header>
 
-  <main>
-  <label for="mortage-amount">Mortgage Amount</label>
-  <input type="number" id="mortage-amount" name="mortage-amount">
+        <main class="flex flex-col space-y-4">
+          <!-- Mortgage Amount -->
+          <div class="form-group">
+            <label for="mortgage-amount" class="block text-slate-500 text-sm font-medium mb-1">Mortgage Amount</label>
+            <div class="relative">
+              <div class="absolute inset-y-0 left-0 flex items-center pl-3 bg-slate-100 border border-r-0 border-slate-300 rounded-l-md">
+                <span class="text-slate-700 font-bold text-sm">€</span>
+              </div>
+              <input 
+                type="number" 
+                id="mortgage-amount" 
+                name="mortgage-amount"
+                class="w-full pl-10 pr-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-sm"
+                placeholder="300,000">
+            </div>
+          </div>
 
-  <label for="mortage-term">Mortgage Term</label>
-  <input type="number" id="mortage-term" name="mortage-term">
+          <!-- Mortgage Term -->
+          <div class="form-group">
+            <label for="mortgage-term" class="block text-slate-500 text-sm font-medium mb-1">Mortgage Term</label>
+            <div class="relative">
+              <input 
+                type="number" 
+                id="mortgage-term" 
+                name="mortgage-term"
+                class="w-full pr-16 pl-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-sm"
+                placeholder="25">
+              <div class="absolute inset-y-0 right-0 flex items-center pr-3 bg-slate-100 border border-l-0 border-slate-300 rounded-r-md">
+                <span class="text-slate-700 font-bold text-sm">years</span>
+              </div>
+            </div>
+          </div>
 
-  <label for="interest-rate">Interest Rate</label>
-  <input type="number" id="interest-rate" name="interest-rate">
+          <!-- Interest Rate -->
+          <div class="form-group">
+            <label for="interest-rate" class="block text-slate-500 text-sm font-medium mb-1">Interest Rate</label>
+            <div class="relative">
+              <input 
+                type="number" 
+                id="interest-rate" 
+                name="interest-rate"
+                step="0.01"
+                class="w-full pr-10 pl-3 py-2 border border-slate-300 rounded-md focus:ring-2 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-sm"
+                placeholder="5.25">
+              <div class="absolute inset-y-0 right-0 flex items-center pr-3 bg-slate-100 border border-l-0 border-slate-300 rounded-r-md">
+                <span class="text-slate-700 font-bold text-sm">%</span>
+              </div>
+            </div>
+          </div>
 
-  <label>Mortage Type</label>
-  <input type="radio" id="repayment" value="repayment" name="mortage-type">
-  <label for="repayment">Repayment</label>
-  <input type="radio" id="interest-only" value="interest-only" name="mortage-type">
-  <label for="interest-only">Interest Only</label>
+          <!-- Mortgage Type -->
+          <div class="form-group">
+            <label class="block text-slate-500 text-sm font-medium mb-2">Mortgage Type</label>
+            <div class="space-y-2">
+              <div class="flex items-center p-2 border border-slate-300 rounded-md hover:border-lime cursor-pointer">
+                <input 
+                  type="radio" 
+                  id="repayment" 
+                  value="repayment" 
+                  name="mortgage-type"
+                  class="w-4 h-4 text-lime focus:ring-lime border-slate-300">
+                <label for="repayment" class="ml-2 text-slate-900 font-bold cursor-pointer text-sm">Repayment</label>
+              </div>
+              <div class="flex items-center p-2 border border-slate-300 rounded-md hover:border-lime cursor-pointer">
+                <input 
+                  type="radio" 
+                  id="interest-only" 
+                  value="interest-only" 
+                  name="mortgage-type"
+                  class="w-4 h-4 text-lime focus:ring-lime border-slate-300">
+                <label for="interest-only" class="ml-2 text-slate-900 font-bold cursor-pointer text-sm">Interest Only</label>
+              </div>
+            </div>
+          </div>
 
-  <button id="calculate-btn">Calculate Repayments</button>
+          <!-- Calculate Button -->
+          <button 
+            id="calculate-btn" 
+            class="w-full bg-lime text-slate-900 font-bold py-3 px-4 rounded-full hover:bg-opacity-80 transition-all duration-200 flex items-center justify-center space-x-2 mt-4">
+            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg">
+              <path d="m18.75 2.25-8.5 8.5-3.5-3.5L5.25 8.75l5 5L20.25 3.75z" fill="currentColor"/>
+            </svg>
+            <span class="text-sm">Calculate Repayments</span>
+          </button>
+        </main>
+      </div>
+
+      <!-- Right Section (Result Section) -->
+      <div class="result-section absolute right-0 top-0 h-full w-1/2 bg-slate-900 rounded-bl-[80px] flex items-center justify-center">
+        <!-- Empty Results -->
+        <div class="result-section-1 flex flex-col items-center justify-center text-center p-6 h-full">
+          <div class="mb-4">
+            <svg width="120" height="120" xmlns="http://www.w3.org/2000/svg">
+              <g fill="none" fill-rule="evenodd">
+                <circle fill="#E4F4FD" cx="60" cy="60" r="60"/>
+                <g transform="translate(18 18)">
+                  <circle fill="#166534" cx="42" cy="42" r="42"/>
+                  <g fill="#FFF" transform="translate(12 12)">
+                    <rect width="48" height="32" rx="6"/>
+                    <rect x="8" y="8" width="32" height="4" rx="2"/>
+                    <rect x="8" y="16" width="16" height="4" rx="2"/>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </div>
+          <h2 class="text-white text-lg font-bold mb-3">Results shown here</h2>
+          <p class="text-slate-300 text-center text-sm leading-relaxed">
+            Complete the form and click "calculate repayments" to see what 
+            your monthly repayments would be.
+          </p>
+        </div>
+
+        <!-- Completed Results -->
+        <div class="result-section-2 hidden flex-col justify-start p-6 h-full w-full">
+          <h2 class="text-white text-lg font-bold mb-3">Your results</h2>
+          <p class="text-slate-300 mb-6 leading-relaxed text-sm">
+            Your results are shown below based on the information you provided. 
+            To adjust the results, edit the form and click "calculate repayments" again.
+          </p>
+
+          <div class="repayment-container bg-slate-700 border-t-4 border-lime rounded-lg p-4 mt-2">
+            <div class="mb-4">
+              <h3 class="text-slate-300 text-xs mb-1">Your monthly repayments</h3>
+              <p class="monthly-amt text-lime text-2xl font-bold">£1,797.74</p>
+            </div>
+            <hr class="border-slate-500 mb-4">
+            <div>
+              <h3 class="text-slate-300 text-xs mb-1">Total you'll repay over the term</h3>
+              <p class="total-amt text-white text-lg font-bold">£539,322.94</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</main>
-  <!-- Empty results start -->
-<div class="result-section-1">
-  <img src="assets/images/illustration-empty.svg">
-  <h2>Results shown here</h2>
-
-  <p>Complete the form and click “calculate repayments” to see what 
-  your monthly repayments would be.</p>
-
-  <!-- Empty results end -->
-</div>
-  <!-- Completed results start -->
-
-
-  <div class="result-section-2">
-  <h2>Your results</h2>
-
-  <p>Your results are shown below based on the information you provided. 
-  To adjust the results, edit the form and click “calculate repayments” again.</p>
-
-  <div class="repayment-container">
-  <h3>Your monthly repayments</h3>
-  <p class="monthly-amt"></p>
-  <h3>Total you'll repay over the term</h3>
-  <p class="total-amt"></p>
-  </div>
-
-  <!-- Completed results end -->
-</div>
-</div>
-</div>
   
   <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>. 
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
     Coded by <a href="#">Your Name Here</a>.
   </div>
 </body>
