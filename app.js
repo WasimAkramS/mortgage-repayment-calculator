@@ -88,4 +88,6 @@ function calculateMortgage() {
 
 clearBtn.addEventListener("click", ()=> {
     mortForm.reset()
+    resultSection2.style.display = "none"
+    resultSection1.style.display = "flex"
 })
