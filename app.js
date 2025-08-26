@@ -69,17 +69,19 @@ function calculateMortgage() {
     let n = years.value*12
     const selectedType = mortForm.querySelector("input[name='mortgage-type']:checked")
 
+    let repaymentMonthly = ((p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1)).toFixed(2)
+    let totalPayment = repaymentMonthly * n
+    let totInterest = totalPayment - p
+
+
     resultSection2.style.display = "flex"
     resultSection1.style.display = "none"
 
     if(selectedType.value === "repayment") {
-        let repaymentMonthly = ((p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1)).toFixed(2)
-        let totalPayment = repaymentMonthly * n
         monthAmt.textContent = repaymentMonthly
         totRepayAmount.textContent = totalPayment
     } else {
-            let totInterest = totalPayment - p
-            totRepayAmount.textContent = totInterest
+            totRepayAmount.textContent = `Total Interest: ${totInterest}`
     }
 
 
