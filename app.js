@@ -1,4 +1,5 @@
 const mortForm = document.getElementById("mort-form")
+const clearBtn = document.getElementById("clear-all")
 const principalAmt = document.getElementById("mortgage-amount")
 const years = document.getElementById("mortgage-term")
 const intRate = document.getElementById("interest-rate")
@@ -70,7 +71,7 @@ function calculateMortgage() {
     const selectedType = mortForm.querySelector("input[name='mortgage-type']:checked")
 
     let repaymentMonthly = ((p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1)).toFixed(2)
-    let totalPayment = repaymentMonthly * n
+    let totalPayment = (repaymentMonthly * n).toFixed(2)
     let totInterest = totalPayment - p
 
 
@@ -83,6 +84,8 @@ function calculateMortgage() {
     } else {
             totRepayAmount.textContent = `Total Interest: ${totInterest}`
     }
-
-
 }
+
+clearBtn.addEventListener("click", ()=> {
+    mortForm.reset()
+})

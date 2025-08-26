@@ -207,7 +207,7 @@
       <div class="input-section bg-white flex flex-col">
         <header class="flex items-center justify-between mb-4">
           <h1 class="text-slate-900 text-base font-bold">Mortgage Calculator</h1>
-          <button class="text-slate-500 text-sm hover:text-slate-700 underline cursor-pointer">Clear All</button>
+          <button id="clear-all" class="text-slate-500 text-sm hover:text-slate-700 underline cursor-pointer">Clear All</button>
         </header>
 
         <form id="mort-form">
@@ -215,15 +215,15 @@
           <!-- Mortgage Amount -->
           <div class="form-group">
             <label for="mortgage-amount" class="block text-slate-500 text-xs font-medium mb-1.5">Mortgage Amount</label>
-            <div class="relative">
-              <div class="input-symbol absolute inset-y-0 left-0 flex items-center px-2 bg-slate-100 border border-r-0 border-slate-300 rounded-l-md">
+            <div class="relative flex">
+              <div class="input-symbol inset-y-0 left-0 flex items-center px-2 bg-slate-100 border border-r-0 border-slate-300 rounded-l-md">
                 <span class="text-slate-700 font-bold text-xs">€</span>
               </div>
               <input
                 type="number" 
                 id="mortgage-amount" 
                 name="mortgage-amount"
-                class="w-full pl-7 pr-2 py-1.5 border border-slate-300 rounded-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
+                class="w-full pl-2 pr-2 py-1.5 border border-l-0 border-slate-300 rounded-r-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
                 placeholder="300,000"
                 required
                 >
@@ -236,12 +236,12 @@
             <!-- Mortgage Term -->
             <div class="form-group flex-1">
               <label for="mortgage-term" class="block text-slate-500 text-xs font-medium mb-0.5">Mortgage Term</label>
-              <div class="relative">
+              <div class="relative flex">
                 <input 
                   type="number" 
                   id="mortgage-term" 
                   name="mortgage-term"
-                  class="w-full pr-10 pl-2 py-1.5 border border-slate-300 rounded-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
+                  class="w-full pr-10 pl-2 py-1.5 border border-r-0 border-slate-300 rounded-md rounded-r-none focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
                   placeholder="25"
                   required
                   >
@@ -256,13 +256,13 @@
             <!-- Interest Rate -->
             <div class="form-group flex-1">
               <label for="interest-rate" class="block text-slate-500 text-xs font-medium mb-0.5">Interest Rate</label>
-              <div class="relative">
+              <div class="relative flex">
                 <input 
                   type="number" 
                   id="interest-rate" 
                   name="interest-rate"
                   step="0.01"
-                  class="w-full pr-6 pl-2 py-1.5 border border-slate-300 rounded-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
+                  class="w-full pr-6 pl-2 py-1.5 border border-r-0 border-slate-300 rounded-md rounded-r-none focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
                   placeholder="5.25"
                   required
                   >
