@@ -5,11 +5,56 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
   <link rel="stylesheet" href="./src/output.css">
+  <script src="app.js" defer></script>
   <title>Mortgage Calculator</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet">
   
+  <style>
+    :root {
+      --color-lime: hsl(61, 70%, 52%);
+      --color-red: hsl(4, 69%, 50%);
+      --color-slate-100: hsl(202, 86%, 94%);
+      --color-slate-300: hsl(203, 41%, 72%);
+      --color-slate-500: hsl(200, 26%, 54%);
+      --color-slate-700: hsl(200, 24%, 40%);
+      --color-slate-900: hsl(202, 55%, 16%);
+    }
+    
+    .bg-lime { background-color: var(--color-lime); }
+    .bg-slate-100 { background-color: var(--color-slate-100); }
+    .bg-slate-700 { background-color: var(--color-slate-700); }
+    .bg-slate-900 { background-color: var(--color-slate-900); }
+    .text-lime { color: var(--color-lime); }
+    .text-slate-300 { color: var(--color-slate-300); }
+    .text-slate-500 { color: var(--color-slate-500); }
+    .text-slate-700 { color: var(--color-slate-700); }
+    .text-slate-900 { color: var(--color-slate-900); }
+    .border-lime { border-color: var(--color-lime); }
+    .border-slate-300 { border-color: var(--color-slate-300); }
+    .border-slate-500 { border-color: var(--color-slate-500); }
+    .ring-lime { --tw-ring-color: var(--color-lime); }
+    .hover\:border-lime:hover { border-color: var(--color-lime); }
+    .hover\:border-slate-900:hover { border-color: var(--color-slate-900); }
+    .hover\:text-slate-700:hover { color: var(--color-slate-700); }
+    .focus\:ring-lime:focus { --tw-ring-color: var(--color-lime); }
+    .focus\:border-lime:focus { border-color: var(--color-lime); }
+    
+    .attribution { 
+      font-size: 11px; 
+      text-align: center; 
+      margin-top: 2rem;
+      color: var(--color-slate-500);
+    }
+    .attribution a { 
+      color: hsl(228, 45%, 44%); 
+      text-decoration: none;
+    }
+    .attribution a:hover {
+      text-decoration: underline;
+    }
+  </style>
   
 </head>
 
@@ -19,26 +64,29 @@
       <!-- Left Section (Input Section) -->
       <div class="input-section w-1/2 p-5 bg-white flex flex-col">
         <header class="flex items-center justify-between mb-4">
-          <h1 class="text-slate-900 text-base font-bold">Calculator</h1>
-          <button class="text-slate-500 text-lg hover:text-slate-700 underline cursor-pointer">Clear All</button>
+          <h1 class="text-slate-900 text-base font-bold">Mortgage Calculator</h1>
+          <button class="text-slate-500 text-sm hover:text-slate-700 underline cursor-pointer">Clear All</button>
         </header>
 
-        <main class="flex flex-col space-y-6 flex-1 overflow-y-auto">
+        <form id="mort-form">
+        <main class="flex flex-col space-y-5 flex-1 overflow-y-auto">
           <!-- Mortgage Amount -->
           <div class="form-group">
             <label for="mortgage-amount" class="block text-slate-500 text-xs font-medium mb-1.5">Mortgage Amount</label>
             <div class="relative">
-              <div class="absolute inset-y-0 left-0 flex items-center px-2 bg-slate-100 border border-r-0 border-slate-300 rounded-l-md">
+              <div class="input-symbol absolute inset-y-0 left-0 flex items-center px-2 bg-slate-100 border border-r-0 border-slate-300 rounded-l-md">
                 <span class="text-slate-700 font-bold text-xs">€</span>
               </div>
-              <input 
+              <input
                 type="number" 
                 id="mortgage-amount" 
                 name="mortgage-amount"
-                class="w-full pl-7 pr-2 py-2 border border-slate-300 rounded-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
+                class="w-full pl-7 pr-2 py-1.5 border border-slate-300 rounded-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
                 placeholder="300,000"
-                required>
+                required
+                >
             </div>
+            <p class=" principal-amt-error text-red-600 text-sm h-2"></p>
           </div>
 
           <!-- Mortgage Term and Interest Rate Side by Side -->
@@ -51,13 +99,16 @@
                   type="number" 
                   id="mortgage-term" 
                   name="mortgage-term"
-                  class="w-full pr-10 pl-2 py-2 border border-slate-300 rounded-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
+                  class="w-full pr-10 pl-2 py-1.5 border border-slate-300 rounded-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
                   placeholder="25"
-                  required>
-                <div class="absolute inset-y-0 right-0 flex items-center px-1 bg-slate-100 border border-l-0 border-slate-300 rounded-r-md">
+                  required
+                  >
+                <div class="input-symbol absolute inset-y-0 right-0 flex items-center px-1 bg-slate-100 border border-l-0 border-slate-300 rounded-r-md">
                   <span class="text-slate-700 font-bold text-xs">years</span>
                 </div>
               </div>
+              <p class="years-error text-red-600 text-sm h-2"></p>
+
             </div>
 
             <!-- Interest Rate -->
@@ -69,13 +120,15 @@
                   id="interest-rate" 
                   name="interest-rate"
                   step="0.01"
-                  class="w-full pr-6 pl-2 py-2 border border-slate-300 rounded-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
+                  class="w-full pr-6 pl-2 py-1.5 border border-slate-300 rounded-md focus:ring-1 focus:ring-lime focus:border-lime outline-none font-bold text-slate-900 hover:border-slate-900 text-s"
                   placeholder="5.25"
-                  required>
-                <div class="absolute inset-y-0 right-0 flex items-center px-1 bg-slate-100 border border-l-0 border-slate-300 rounded-r-md">
+                  required
+                  >
+                <div class="input-symbol absolute inset-y-0 right-0 flex items-center px-1 bg-slate-100 border border-l-0 border-slate-300 rounded-r-md">
                   <span class="text-slate-700 font-bold text-xs">%</span>
                 </div>
               </div>
+              <p class="int-rate-error text-red-600 text-sm h-2"></p>
             </div>
           </div>
 
@@ -90,7 +143,7 @@
                   value="repayment" 
                   name="mortgage-type"
                   class="w-3 h-7 text-lime focus:ring-lime border-slate-300">
-                <label for="repayment" class="ml-1.5 text-slate-900 font-bold cursor-pointer text-xs">Repayment</label>
+                <label for="repayment" class="ml-1.5 text-slate-900 font-bold cursor-pointer text-xs w-full">Repayment</label>
               </div>
               <div class="flex items-center p-1 border border-slate-300 rounded-md hover:border-lime cursor-pointer">
                 <input 
@@ -98,28 +151,32 @@
                   id="interest-only" 
                   value="interest-only" 
                   name="mortgage-type"
-                  class="w-3 h-7 text-lime focus:ring-lime border-slate-300">
-                <label for="interest-only" class="ml-1.5 text-slate-900 font-bold cursor-pointer text-xs">Interest Only</label>
+                  class="w-3 h-7 text-lime focus:ring-lime border-slate-300" required>
+                <label for="interest-only" class="ml-1.5 text-slate-900 font-bold cursor-pointer text-xs w-full">Interest Only</label>
               </div>
             </div>
+           <p class="mort-type-error text-red-600 text-sm h-2"></p>
           </div>
 
           <!-- Calculate Button -->
-          <div class="mt-4 pt-3">
+          <div class="mt-2 pt-2">
             <button 
+              type="submit"
               id="calculate-btn" 
               class="w-full bg-lime text-slate-900 font-bold py-2.5 px-3 rounded-full hover:bg-opacity-80 transition-all duration-200 flex items-center justify-center space-x-1 cursor-pointer">
-              <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
+              <!-- <svg width="14" height="14" xmlns="http://www.w3.org/2000/svg">
                 <path d="m12 2-5 5-2-2L4 6l3 3L13 4z" fill="currentColor"/>
-              </svg>
+              </svg> -->
+              <img src="assets/images/icon-calculator.svg" class="max-w-full">
               <span class="text-xs">Calculate Repayments</span>
             </button>
           </div>
         </main>
+        </form>
       </div>
 
       <!-- Right Section (Result Section) -->
-      <div class="result-section absolute right-0 top-0 h-full w-1/2 bg-slate-900 rounded-bl-[60px] flex items-center justify-center">
+      <div class="result-section absolute right-0 top-0 h-full w-1/2 bg-slate-700 rounded-bl-[60px] flex items-center justify-center">
         <!-- Empty Results -->
         <div class="result-section-1 flex flex-col items-center justify-center text-center p-6 h-full">
           <div class="mb-2">
@@ -146,22 +203,22 @@
         </div>
 
         <!-- Completed Results -->
-        <div class="result-section-2 hidden flex-col justify-start p-3 h-full w-full overflow-y-auto">
-          <h2 class="text-white text-sm font-bold mb-2">Your results</h2>
-          <p class="text-slate-300 mb-3 leading-relaxed text-xs">
+        <div class="result-section-2 hidden flex-col justify-start p-6 h-full w-full overflow-y-auto">
+          <h2 class="text-white text-lg font-bold mb-2">Your results</h2>
+          <p class="text-slate-300 mb-7 leading-relaxed text-xs">
             Your results are shown below based on the information you provided. 
             To adjust the results, edit the form and click "calculate repayments" again.
           </p>
 
-          <div class="repayment-container bg-slate-700 border-t-4 border-lime rounded-lg p-2.5 flex-1">
-            <div class="mb-2">
-              <h3 class="text-slate-300 text-xs mb-0.5">Your monthly repayments</h3>
-              <p class="monthly-amt text-lime text-lg font-bold">£1,797.74</p>
+          <div class="repayment-container bg-slate-900 border-t-4 border-lime rounded-lg p-4.5 flex-1">
+            <div class="mb-3">
+              <h3 class="text-slate-300 text-xs my-2">Your monthly repayments</h3>
+              <p class="monthly-amt text-lime text-3xl font-bold">£1,797.74</p>
             </div>
-            <hr class="border-slate-500 mb-2">
+            <hr class="border-slate-500 mb-4">
             <div>
               <h3 class="text-slate-300 text-xs mb-0.5">Total you'll repay over the term</h3>
-              <p class="total-amt text-white text-sm font-bold">£539,322.94</p>
+              <p class="total-amt text-white text-lg font-bold">£539,322.94</p>
             </div>
           </div>
         </div>
